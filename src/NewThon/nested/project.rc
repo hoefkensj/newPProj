@@ -1,0 +1,67 @@
+	function testenv(){
+		local ARG
+		ARG="$(find_python3)"
+
+
+
+		local TEST_FOLDER TEST_VENV
+		TEST_FOLDER=$( pwd )
+		TEST_VENV="${TEST_FOLDER}/.venv"
+		TEST_BIN="${TEST_FOLDER}/.bin"
+		TEST_PY="${TEST_FOLDER}/.venv/current/bin/python"
+
+		printf 'Checking \x1b[1;34m%s\x1b[m for \x1b[1mVirtual Env\x1b[m. ...' "${TEST_FOLDER}"
+		[[ -e "${TEST_VENV}"    ]] && PROJECT_VENV="${TEST_VENV}"    && export PROJECT_VENV
+		[[ -e "${TEST_VENV}"    ]] && PROJECT_HOME="${TEST_FOLDER}"  && export PROJECT_HOME
+		[[ -e "${TEST_BIN}"     ]] && PROJECT_BIN="${TEST_BIN}"      && export PROJECT_BIN;
+		[[ -n "${PROJECT_VENV}" ]] && printf '\x1b[1;32m  OK\x1b[m\n'  || printf '\x1b[1;31m  FAIL\x1b[m\n'
+	}
+testenv
+
+_OLD_VIRTUAL_PATH="$PATH"
+_OLD_VIRTUAL_PS1="${PS1:-}"
+export _OLD_VIRTUAL_PS1
+[[ -n "${PYTHONHOME}" ]] && _OLD_VIRTUAL_PYTHONHOME="${PYTHONHOME:-}" &&  unset  PYTHONHOME
+
+PROJECT_NAME=$( basename "${PROJECT_HOME}" )
+PROJECT_BIN="${PROJECT_HOME}/.bin"
+
+PROJECT_VENV="${PROJECT_HOME}/.venv"
+[[ -e "${PROJECT_VENV}/bin" ]] && PROJECT_VENV_BIN="${PROJECT_VENV}/bin"
+[[ -e "${PROJECT_VENV}/default" ]] && PROJECT_VSTORE="${PROJECT_VENV}" && PROJECT_VENV="${PROJECT_VENV}/default"
+[[ -e "${PROJECT_VENV}/current" ]] && PROJECT_VSTORE="${PROJECT_VENV}" && PROJECT_VENV="${PROJECT_VENV}/current"
+[[ -e "${PROJECT_VENV}/bin" ]] && PROJECT_CURRENT_BIN="${PROJECT_VENV}/bin"
+
+[[ ":${PATH}:" != *":${PROJECT_BIN}:"* ]]       && PATH="${PROJECT_BIN}:${PATH}"
+#		[[ ":${PATH}:" != *":${PROJECT_VENV_BIN}:"* ]]  && PATH="${PROJECT_VENV_BIN}:${PATH}"
+[[ ":${PATH}:" != *":${PROJECT_CURRENT_BIN}:"* ]]  && PATH="${PROJECT_CURRENT_BIN}:${PATH}"
+PROJECT_PYTHON_VERSION=$( "python" --version|tr -d 'Python ' )
+PS1="\[\e[1;37m\]( \[\e[1;33m\]${PROJECT_NAME}\[\e[0;29m\]-\[\e[0;34m\]py\[\e[1;34m\]${PROJECT_PYTHON_VERSION}\[\e[1;37m\] ) ${_OLD_VIRTUAL_PS1}"
+VIRTUAL_ENV_PROMPT="(${PROJECT_NAME}-py${PROJECT_PYTHON_VERSION}) "
+
+printf '┌─────────────────────────────────────────────────────────────────────────────┐\n'
+python -c "print('│\x1b[3G\x1b[1;33mPROJECT:\x1b[15G\x1b[1;3;38;2;255;128;0m${PROJECT_NAME}\x1b[79G\x1b[m│')"
+printf '├─────────────────────────────────────────────────────────────────────────────┤\n'
+python -c "print('│\x1b[3G\x1b[1;29mHome   :\x1b[20G\x1b[0;3;36m','./'+'/'.join('"${PROJECT_HOME}"'.split('/')[-1:])[-60:],'\x1b[79G\x1b[m│')"
+python -c "print('│\x1b[3G\x1b[1;29mVenv   :\x1b[20G\x1b[0;3;36m','./'+'/'.join('"${PROJECT_VENV}"'.split('/')[-1:])[-60:],'\x1b[79G\x1b[m│')"
+python -c "print('│\x1b[3G\x1b[1;29mPython :\x1b[20G\x1b[0;3;38;2;255;128;0m','"${PROJECT_PYTHON_VERSION}"'[-60:],'\x1b[79G\x1b[m│')"
+python -c "print('│\x1b[3G\x1b[1;29mPATH   :\x1b[16G\x1b[0;3;38;2;255;128;0m+   \x1b[0;3;36m','./'+'/'.join('"${PROJECT_BIN}"'.split('/')[-1:])[-60:],'\x1b[79G\x1b[m│')"
+#		python -c "print('│\x1b[3G\x1b[1;29m\x1b[16G\x1b[0;3;38;2;255;128;0m+   \x1b[0;3;36m','./' +'/'.join('"${PROJECT_VENV_BIN}"'.split('/')[-2:])[-60:],'\x1b[79G\x1b[m│')"
+python -c "print('│\x1b[3G\x1b[1;29m\x1b[16G\x1b[0;3;38;2;255;128;0m+   \x1b[0;3;36m','./' +'/'.join('"${PROJECT_CURRENT_BIN}"'.split('/')[-2:])[-60:],'\x1b[79G\x1b[m│')"
+printf '└─────────────────────────────────────────────────────────────────────────────┘\n'
+
+
+export PROJECT_HOME
+export PROJECT_NAME
+export PROJECT_VENV
+export PROJECT_VENV_BIN
+export PROJECT_BIN
+export PS1
+export VIRTUAL_ENV_PROMPT
+export _OLD_VIRTUAL_PATH
+export _OLD_VIRTUAL_PS1
+export _OLD_VIRTUAL_PYTHONHOME
+
+
+VIRTUAL_ENV="${PROJECT_HOME}/.venv"  #for compat.
+export VIRTUAL_ENV
