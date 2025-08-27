@@ -1,0 +1,22 @@
+[project]
+name = "newpproj"
+version = "0.1.0"
+description = ""
+authors = ["hoefkensj <hoefkens.j@gmail.com>"]
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[project.urls]
+Homepage = "https://github.com/hoefkensj/newpproj"
+Issues = "https://github.com/hoefkensj/Clict/newpproj"
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"

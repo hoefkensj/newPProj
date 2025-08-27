@@ -1,0 +1,2 @@
+[342 01:33:05.011882] The output buffer does not support sRGB color encoding, colors will be incorrect.
+[343 04:50:16.333277] Failed to save cached values with error: [Errno 5] Input/output error: '/home/hoefkens/.cache/kitty/tmpo_glhu_0.tmp'
