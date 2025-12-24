@@ -1,0 +1,7 @@
+- [name] /
+    - .local/
+      - bin/
+      - conf/
+      - venvs/
+        - [arch].[platform]-[interpreter]-[majorversion].[minorversion] /
+    - .venv ->

@@ -1,4 +1,4 @@
-# This file must be used with "source bin/activate" *from bash*
+This file must be used with "source bin/activate" *from bash*
 #make sure its sourced not executed
 #(return 0 2>/dev/null) || echo 'this should be sourced not executed | use:  ./.integrate OR use: source .venv/bin/activate '
 

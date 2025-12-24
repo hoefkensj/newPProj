@@ -7,7 +7,7 @@
     <option name="show" value="ASK" />
     <option name="description" value="" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 virtualenv at ~/Development/Code/Python/Projects/NewThon/.venv" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.14 (NewThon)" project-jdk-type="Python SDK" />
   <component name="PyPackaging">
     <option name="earlyReleasesAsUpgrades" value="true" />
   </component>

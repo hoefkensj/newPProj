@@ -3,17 +3,17 @@
 function pyversion() {
    printf $("${1}" --version|tr -d [:alpha:][:blank:] 2>0)
 }
-function testenv(){
+function testenv() $1 {
 	local TEST_FOLDER TEST_VENV
-	TEST_FOLDER=$( pwd )
-	TEST_LIB="${TEST_FOLDER}/.lib"
-	TEST_VENV="${TEST_FOLDER}/.venv"
+
+	TEST_VENV_DEFAULT="${TEST_FOLDER}/.local/default"
+	TEST_VENVS="${TEST_FOLDER}/.local/venvs"
 
 	[[ -e "${TEST_VENV}" ]] && PROJECT_VENV="${TEST_VENV}"    && export PROJECT_VENV
     [[ -e "${TEST_VENV}" ]] && PROJECT_HOME="${TEST_FOLDER}"  && export PROJECT_HOME
 
 }
-testenv
+testenv $(pwd)/.local/venvs
 
 _OLD_VIRTUAL_PATH="${PATH}"
 _OLD_VIRTUAL_PS1="${PS1:-}"
